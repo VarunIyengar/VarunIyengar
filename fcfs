@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+using namespace std;
+void print_chart(queue<int> q)
+{
+cout<<"\n Gantt Chart is : ";
+While(!q.empty())
+{
+cout<<" P"<<q.front()<<" ";
+q.pop();
+}
+}
+void main()
+{
+queue<int> gantt_chart;
+array<int> arrival_time,burst_time,completion_time,process_id,waiting_time;
+int id,n,at,bt;
+cout<<"Enter number of processes: "
+cin>>n;
+for(int i=0;i<n;i++)
+{
+ cout<<"\n Enter process id: ";
+ cin>>id;
+ process_id.push(id);
+ cout<<"\n Enter arrival Time: ";
+ cin>>at;
+ arrival_time.push(at);
+ cout<<"\n enter burst time: ";
+ cin>>bt;
+ burst_time.push(bt);
+}
+for(int i=0;i<n;i++)
+{
+for(int j=i;j<n;j++)
+{
+if(arrival_time[j]>arrival_time[j+1])
+{
+ swap(arrival_time[j],arrival_time[j+1]);
+ swap(process_id[j],process_id[j+1]);
+ swap(burst_time[j],burst_time[j+1];
+ }
+ int timer=0;
+ int sumwait=0;
+ cout<<"\n CPU Scheduling FCFS.";
+ for(i=1;i<=n;i++)
+ {
+  if(timer<=arrival_time[i])
+   timer=arrival_time[i];
+  waiting_time[i]=timer-arrival_time[i];
+  timer=timer+burst_time[i];
+  completion_time[i]=timer;
+  sumwait+=waiting_time[i];
+  cout<<"\n Process ID: "<<process_id[i];
+  cout<<" Burst Time: "<<burst_time[i];
+  cout<<" Completion time: "<<completion_time[i];
+  cout<<" Waiting Time: "<<waiting_time[i]<<endl;
+ gantt_chart.push(process_id[i]);
+ }
+ int avgwait=sumwait/n;
+ cout<<"\n Average Waiting Time: "<<avgwait;
+ print_chart(gantt_chart);
+ getch();
+ }
+  
+
+
+
+
+
